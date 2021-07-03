@@ -14,3 +14,6 @@ The easiest way to interface to the data wire is to use a LIN transceiver chip. 
 You can use the schematic as described in the datasheet of that device:
 ![NCV7237 schematic](media/schematic.png)
 
+Of course, any interface that combines TX and RX in a non-inverting way will work. It seems to get a good response from the battery you need to have at least 5V signal levels. The battery has a weak drive level.
+
+For experimentation you can simply use a 5V USB-to-TTL converter and connect TX and RX together using a resistor. 
