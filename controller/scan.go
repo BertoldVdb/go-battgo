@@ -60,12 +60,11 @@ func (c *Controller) detectAndConfigure() error {
 				controller: c,
 				serial:     response[1:],
 				address:    address,
+
+				device:    &dummyDevice{},
+				deviceNew: true,
 			}
 
-			dev.device = c.newDev(dev)
-			if dev.device == nil {
-				dev.device = &dummyDevice{}
-			}
 			c.devices[string(response[1:])] = dev
 		}
 
@@ -80,6 +79,15 @@ func (c *Controller) detectAndConfigure() error {
 
 		if len(response) != 11 || response[0] != 3 {
 			dev.close()
+			return nil
+		}
+
+		if dev.deviceNew {
+			dev.deviceNew = false
+
+			if d := c.newDev(dev); d != nil {
+				dev.device = d
+			}
 		}
 	}
 

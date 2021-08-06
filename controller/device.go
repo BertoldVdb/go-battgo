@@ -21,7 +21,8 @@ type BusDevice struct {
 	address    uint8
 	closed     bool
 
-	device FunctionalDevice
+	device    FunctionalDevice
+	deviceNew bool
 }
 
 func (d *BusDevice) close() {

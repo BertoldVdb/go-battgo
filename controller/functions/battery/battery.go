@@ -87,6 +87,7 @@ func New(device *controller.BusDevice, updateChan chan<- (*DeviceBattery)) contr
 
 	d.Data.Serial = hex.EncodeToString(device.GetSerial())
 	d.Data.BusAddress = device.GetAddress()
+	d.Data.Connected = true
 
 	return d
 }
@@ -282,7 +283,7 @@ func (d *DeviceBattery) SetConfiguration(chargeCurrentA float32, storageVoltageV
 		buf[8] = uint8(dischargeHours)
 	}
 
-	response, err := d.parent.CommandExecTimeout(0, buf[:], nil)
+	response, err := d.parent.CommandExecTimeout(time.Second, buf[:], nil)
 	if err != nil {
 		return false, err
 	}
