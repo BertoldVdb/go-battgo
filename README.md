@@ -1,7 +1,7 @@
 # Golang BattGO Libraty
 
 ## Functionality
-This library allows interfacing, as a controller, to a [BattGO](http://www.battgo.org/) comaptible network. This allows reading the telemetry and changing the configuration from one or more batteries.
+This library allows interfacing, as a controller, to a [BattGO](http://www.battgo.org/) compatible network. This allows reading the telemetry and changing the configuration from one or more batteries.
 
 ## How to use
 A simple example program is provided in the toplevel of the repository (main.go). It will output the data of all attached batteries to the console.
