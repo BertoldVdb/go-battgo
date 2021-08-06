@@ -27,7 +27,7 @@ This section explains how to make a very simple interface using a USB-to-TTL ada
 We start from a standard [CH340 dongle](https://aliexpress.com/item/1005002119244700.html) found on AliExpress. This dongle has TX and RX leds that load the IO lines, as well as a series resistor. This will likely give communication issues as the drive strength of the battery is weak. Please unsolder the LEDs and bridge the resistor as shown in the bottom half of following figure (red circle shows the area to modify):  
 ![CH340 modification](media/dongle.png)
 
-The top half of the previous figure shows the small circuit to connect TX and RX together. The schematic is shown in the next figure:
+The top half of the previous figure shows the small circuit to connect TX and RX together. The schematic is shown in the next figure:  
 ![CH340 modification](media/schematic_test.png)
 
 Make sure to set the jumper on the dongle to 5V and connect your XT60i connector to the RX and GND pins.
