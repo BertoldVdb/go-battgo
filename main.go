@@ -15,7 +15,11 @@ func main() {
 	dev := flag.Int("devices", -1, "Number of devices on bus")
 	flag.Parse()
 
-	phy := phy.NewSerialSimple(*port)
+	phy, err := phy.NewSerialSimple(*port)
+	if err != nil {
+		log.Fatalln("Could not create PHY", err)
+	}
+	defer phy.Close()
 
 	updateChan := make(chan (*battery.DeviceBattery), 1)
 	go func() {

@@ -3,7 +3,6 @@ package phy
 import (
 	"encoding/binary"
 	"io"
-	"log"
 	"time"
 
 	"github.com/BertoldVdb/go-misc/serial"
@@ -181,7 +180,7 @@ func (b *PHY) Close() error {
 
 // NewSerialSimple is a convenience function that sets the PHY up for a
 // standard serial port.
-func NewSerialSimple(portName string) *PHY {
+func NewSerialSimple(portName string) (*PHY, error) {
 	options := serial.PortOptions{
 		PortName:      portName,
 		FlowControl:   false,
@@ -190,9 +189,8 @@ func NewSerialSimple(portName string) *PHY {
 
 	port, err := serial.Open(&options)
 	if err != nil {
-		log.Fatalln(err)
+		return nil, err
 	}
-	defer port.Close()
 
 	phy := PHY{
 		Port:               port,
@@ -217,5 +215,5 @@ func NewSerialSimple(portName string) *PHY {
 		}
 	}
 
-	return &phy
+	return &phy, nil
 }
